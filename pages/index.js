@@ -17,7 +17,7 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getInitialProps = async () => {
   const home = await getContentByURL("home_page", "", "en-us", [
     "article.article_and_videos",
     "testimonial.volunteers",
