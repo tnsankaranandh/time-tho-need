@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
           />
           <link rel="stylesheet" href="instantsearch.css" />
         </Head>
-        <body>
+        <body style={{margin:'0'}}>
           <Main />
           <NextScript />
         </body>

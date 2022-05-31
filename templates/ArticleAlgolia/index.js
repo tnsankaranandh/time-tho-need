@@ -1,63 +1,55 @@
-import React from 'react';
+import React from "react";
 import {
   RefinementList,
   SearchBox,
-  Hits,
   Configure,
   Highlight,
   Pagination,
   InstantSearch,
-} from 'react-instantsearch-dom';
-import { Container } from "./article-algolia.style";
+} from "react-instantsearch-dom";
+import {
+  AsideConatiner,
+  Container,
+  Hits,
+  SearchConatiner,
+  List,
+  IntialContainer,
+} from "./article-algolia.style";
 import { Wrapper } from "../../components/wrapper";
+import { ListItemButton, ListItemText, Typography } from "@mui/material";
+import { ArticalsCrads } from "../../components/ArCards";
 
 const HitComponent = ({ hit }) => {
-  console.log('hit');
-  console.log(hit);
-  return <div className="hit">
-    <div>
-      <div className="hit-picture">
-        <img src={`${hit.image}`} />
-      </div>
-    </div>
-    <div className="hit-content">
-      <div>
-        <Highlight attribute="name" hit={hit} />
-        <h2> - {hit?.entry?.title}</h2>
-      </div>
-      <div className="hit-type">
-        <Highlight attribute="hit.entry.type" hit={hit} />
-      </div>
-      <div className="hit-description">
-        <Highlight attribute="hit.entry.summary" hit={hit} />
-      </div>
-    </div>
-  </div>
+  return <ArticalsCrads data={hit.entry} hit={hit} />;
 };
 
 const ArticleAlgolia = (props) => {
   return (
     <Wrapper>
-      <Container>
+      <IntialContainer>
         <InstantSearch {...props}>
-          <Configure hitsPerPage={12} />
-          <header>
-            <h1>Search Articles / Videos</h1>
-            <SearchBox />
-          </header>
-          <main>
-            <div className="menu">
-              <h1>Type</h1>
-              <RefinementList attribute="entry.type" />
-              <h1>Topics</h1>
-              <RefinementList attribute="entry.topics" />
-            </div>
-            <div className="results">
-              <Hits hitComponent={HitComponent} />
-            </div>
-          </main>
+          <Container>
+            <AsideConatiner>
+              <Configure hitsPerPage={9} />
+              <SearchConatiner>
+                <Typography variant="h5">Search Articles / Videos</Typography>
+                <SearchBox />
+              </SearchConatiner>
+              <List component="div" disablePadding>
+                <>
+                  <ListItemText primary="Type" />
+                  <RefinementList attribute="entry.type" />
+                </>
+                <>
+                  <ListItemText primary="Topics" />
+                  <RefinementList attribute="entry.topics" />
+                </>
+              </List>
+            </AsideConatiner>
+            <Hits hitComponent={HitComponent} />
+          </Container>
         </InstantSearch>
-      </Container>
+      </IntialContainer>
     </Wrapper>
   );
 };

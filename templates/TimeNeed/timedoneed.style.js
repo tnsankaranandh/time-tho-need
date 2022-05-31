@@ -15,3 +15,20 @@ export const Typography = styled(MuiTypography)`
   font-family: "Sarabun";
   color: #0c404e;
 `;
+
+export const SpacingContainer = styled.div`
+  margin: 30px 0px;
+  width: 100%;
+  align-items: center;
+`;
+
+export const NeedHelpContainer = styled.div`
+  padding-top: 40px;
+  background-color: #e0ded4;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 800px;
+`;

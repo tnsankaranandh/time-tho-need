@@ -10,8 +10,11 @@ import { getEntryByQuery } from "../../../service/contentstackSDK";
 import { useState } from "react";
 import { setCookies } from "cookies-next";
 import { useSnackbar } from "notistack";
+import Router from 'next/router'
 
 export const Loginfrom = ({ handleClose }) => {
+
+
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (event) => {
@@ -27,9 +30,15 @@ export const Loginfrom = ({ handleClose }) => {
           `Hello ${result.entries[0].title}, your logged in successfully`,
           { variant: "success" }
         );
+        let userValue=result.entries[0].join_as
+        Router.push({
+          pathname: '/',
+          query: { user: userValue.toLowerCase() },
+        })
         handleClose();
       }
     } else {
+      
       enqueueSnackbar("Please Enter valid Email", { variant: "error" });
     }
   };

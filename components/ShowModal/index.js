@@ -14,10 +14,7 @@ export const ShowModalContent = ({ data, handleClose }) => {
             width="100%"
             autoPlay
           >
-            <source
-              src={data.video_url.replace("watch", "embed")}
-              type="video/mp4"
-            />
+            <source src={data.video_url} type="video/mp4" />
           </video>
           // <iframe
           //   width="100%"
@@ -33,7 +30,7 @@ export const ShowModalContent = ({ data, handleClose }) => {
             component="img"
             alt={data?.image?.alt}
             height="400px"
-            image={data?.image?.url}
+            image={data?.image[0].url}
             title={data?.title}
           />
         )}

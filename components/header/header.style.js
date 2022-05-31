@@ -83,8 +83,7 @@ export const CardMedia = styled(MuiCarMedia)`
 `;
 
 export const LogoConatiner = styled.div`
-  margin-right: 630px;
-  margin-top: 40px;
+  margin-right: 30%;
   height: 85px;
 `;
 

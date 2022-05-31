@@ -26,7 +26,6 @@ export const SubHeader = () => {
       { name: "Home", path: "/" },
       { name: "TIME २ NEED", path: "/time" },
       { name: "Article & Video", path: "/article" },
-      { name: "Article & Video - Algolia", path: "/article-algolia" },
     ];
   }, []);
 

@@ -20,7 +20,7 @@ export const Conatiner = styled.div`
 
 export const Close = styled(CloseIcon)`
   &.MuiSvgIcon-root {
-    margin-left: 1050px;
+    margin-left: 95%;
     padding: 10px;
     color: #0c404e;
   }

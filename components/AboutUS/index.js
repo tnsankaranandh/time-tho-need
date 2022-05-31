@@ -7,7 +7,6 @@ import {
 } from "./aboutUs.style";
 
 export const AboutUs = ({ data }) => {
-  console.log("🚀 ~ file: index.js ~ line 4 ~ AboutUs ~ data", data);
   return (
     <>
       <Conatiner>

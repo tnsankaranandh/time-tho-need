@@ -7,14 +7,7 @@ import { getContentByURL, getEntries } from "../service/contentstackSDK";
 export default function Home(props) {
   const [data, setData] = useState(props);
 
-  const data1 = {
-    cmsdata: { ...data },
-  };
-  return (
-    <>
-      {data1 && Object.keys(data1?.cmsdata).length && <HomePage data={data1} />}
-    </>
-  );
+  return <>{data && Object.keys(data).length && <HomePage data={data} />}</>;
 }
 
 export const getStaticProps = async () => {
@@ -22,13 +15,9 @@ export const getStaticProps = async () => {
     "article.article_and_videos",
     "testimonial.volunteers",
   ]);
-  const header = await getEntries("header", "en-us", []);
-  const footer = await getEntries("footer", "en-us", []);
-
+  
   return {
     props: {
-      header: header,
-      footer: footer,
       home: home,
     },
   };

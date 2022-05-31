@@ -11,8 +11,8 @@ import { AboutUs } from "../../components/AboutUS";
 
 const Home = ({ data }) => {
   let variations;
-  if (data?.cmsdata?.home?.banner && data?.cmsdata?.home?.banner?.length > 1) {
-    const mappedData = data?.cmsdata?.home?.banner?.map((element) => {
+  if (data?.home?.banner && data?.home?.banner?.length > 1) {
+    const mappedData = data?.home?.banner?.map((element) => {
       return {
         ...element,
         intentTag: element.uniform,
@@ -28,9 +28,9 @@ const Home = ({ data }) => {
           <Personalize variations={variations} component={Banner} />
         )}
         {/* <Banner action={false} height={"500px"} imageHeight={"810px"} /> */}
-        <ButtonCard cardData={data.cmsdata.home.article} />
-        <AboutUs data={data.cmsdata.home.about_us} />
-        <ListOfMembers data={data.cmsdata.home.testimonial} />
+        <ButtonCard cardData={data.home.article} />
+        <AboutUs data={data.home.about_us} />
+        <ListOfMembers data={data.home.testimonial} />
       </Container>
     </Wrapper>
   );

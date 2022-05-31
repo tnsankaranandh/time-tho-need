@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const Tab = styled(MuiTab)`
   &.MuiTab-root {
     width: 500px;
+
     &.Mui-selected {
       color: #475e5f;
     }
@@ -14,4 +15,6 @@ export const Tab = styled(MuiTab)`
   }
 `;
 
-export const Tabs = styled(MuiTabs)``;
+export const Tabs = styled(MuiTabs)`
+  margin: 20px 0;
+`;

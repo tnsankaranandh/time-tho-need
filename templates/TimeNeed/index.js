@@ -1,7 +1,12 @@
 import { ScrollTable } from "../../components/Table";
 import LabTabs from "../../components/Tabs";
 import { Wrapper } from "../../components/wrapper";
-import { Container, Typography } from "./timedoneed.style";
+import {
+  Container,
+  NeedHelpContainer,
+  SpacingContainer,
+  Typography,
+} from "./timedoneed.style";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
@@ -12,6 +17,8 @@ import { Layout } from "../../styles/space.stlye";
 import { useEffect, useCallback } from "react";
 import { getScheduleBasedOnUser } from "../../service/contentstackSDK";
 import { checkCookies, getCookie } from "cookies-next";
+import Link from "next/link";
+import EmailIcon from '@mui/icons-material/Email';
 
 export const TimeDoNeed = ({ data }) => {
   const [tableData, setTableData] = useState([]);
@@ -23,8 +30,9 @@ export const TimeDoNeed = ({ data }) => {
       "schedule",
       "user",
       "en-us",
-      value === 0 ? "Donar" : "Counselor"
+      value === 0 ? ["Donar", "Volunteer"] : ["Counselor"]
     );
+
     if (schedule.length > 0) {
       schedule.map((item) => {
         item.id = item.uid;
@@ -38,70 +46,103 @@ export const TimeDoNeed = ({ data }) => {
   }, [getData]);
 
   const getNeedData = useCallback(async () => {
-    const schedule = await getScheduleBasedOnUser(
-      "schedule",
-      "user",
-      "en-us",
-      "Volunteer"
-    );
-    if (schedule.length > 0) {
-      schedule.map((item) => {
-        item.id = item.uid;
+    if (data?.time?.need_help && data?.time?.need_help?.counselor) {
+      let newData = data.time.need_help.counselor;
+      newData = newData.map((item) => {
+        return { id: item.uid, display_name: item.title, ...item };
       });
-      setNeedTableData(schedule);
+      setNeedTableData(newData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getNeedData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getNeedData]);
 
+
   const columns = [
-    { field: "id", headerName: "ID", width: 220, hide: true },
-    { field: "title", headerName: "Title", width: 220 },
-    { field: "display_name", headerName: "Display Name", width: 220 },
-    { field: "meeting_id", headerName: "Meeting Id", width: 220 },
-    { field: "date", headerName: "Date", width: 220 },
-    { field: "topics", headerName: "Topics", width: 220 },
+    { field: "id", headerName: "ID", width: 200, hide: true },
+    { field: "title", headerName: "Title", width: 200 },
+    { field: "display_name", headerName: "Display Name", width: 200 },
+    { field: "meeting_id", headerName: "Meeting Id", width: 200 },
+    { field: "date", headerName: "Date", width: 200 },
+    { field: "topics", headerName: "Topics", width: 200 },
     {
       field: "join",
       headerName: "join Call",
       sortable: false,
-      width: 220,
+      width: 100,
       renderCell: (params) => {
         return (
-          <IconButton onClick={(data) => console.log(params.row)}>
-            <VideoCallIcon color="primary" />
-          </IconButton>
+          <Link
+            target={"_blank"}
+            href={`https://us04web.zoom.us/j/${params.row.meeting_id}`}
+          >
+            <a target="_blank">
+              <VideoCallIcon color="primary" />
+            </a>
+          </Link>
         );
       },
     },
   ];
 
-  const props = {};
+  const columnsForNeed = [
+    { field: "id", headerName: "ID", width: 420, hide: true },
+    { field: "title", headerName: "Title", width: 600 },
+    { field: "email_id", headerName: "Email", width: 600 },
+    {
+      field: "request",
+      headerName: "Request",
+      sortable: false,
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <Link
+            target={"_blank"}
+            href={`mailto:${params.row.email_id}`}
+          >
+            <a target="_blank">
+              <EmailIcon color="primary" />
+            </a>
+          </Link>
+        );
+      },
+    },
+  ];
 
   return (
     <Wrapper>
       <Container>
-        <Banner action={false} height={"500px"} imageHeight={"810px"} />
-        <Layout />
+        <Banner
+          {...data.time}
+          action={false}
+          height={"500px"}
+          imageHeight={"810px"}
+        />
+
         <LabTabs setValue={setValue} value={value} />
+
         {value === 0 ? (
           <ScrollTable TableHeader={columns} rows={tableData} />
         ) : (
           <ScrollTable TableHeader={columns} rows={tableData} />
         )}
-        <Layout />
+
         {checkCookies("join_as") && getCookie("join_as") === "Needer" ? (
-          <>
-            <Typography variant="h2">Need Help ?</Typography>
-            <Layout />
-            <ScrollTable TableHeader={columns} rows={needTableData} />
-          </>
+          <NeedHelpContainer>
+            <Typography variant="h2">{data?.time?.need_help?.title}</Typography>
+            {needTableData.length > 0 && (
+              <ScrollTable TableHeader={columnsForNeed} rows={needTableData} />
+            )}
+          </NeedHelpContainer>
         ) : (
-          <ShortBanner />
+          <SpacingContainer>
+            <ShortBanner data={data.time.donate_time} />
+          </SpacingContainer>
         )}
-        <Layout />
       </Container>
     </Wrapper>
   );

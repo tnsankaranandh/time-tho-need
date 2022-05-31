@@ -11,7 +11,7 @@ import {
 // import { styled } from "@mui/material/styles";
 import { GridToolbar } from "@mui/x-data-grid";
 
-export const ScrollTable = ({ TableHeader, rows }) => {
+export const ScrollTable = ({ TableHeader, rows, ...restProps }) => {
   // return (
   //   <TableContainer component={Paper}>
   //     <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -39,11 +39,11 @@ export const ScrollTable = ({ TableHeader, rows }) => {
   //   </TableContainer>
   // );
   return (
-    <div style={{ height: 430, width: "80%" }}>
+    <div style={{ height: 450, width: "80%", marginBottom: "50px" }}>
       <DataGrid
         rows={rows}
         columns={TableHeader}
-        pageSize={5}
+        pageSize={6}
         rowsPerPageOptions={[rows.lenght]}
         density="comfortable"
         disableColumnMenu={false}

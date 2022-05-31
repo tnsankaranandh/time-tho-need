@@ -26,7 +26,7 @@ export const Banner = (props) => {
   let action = false;
   return (
     <Container>
-      <Card width={"100%"} height="500px" radius="0px">
+      <Card width={"100%"} height="500px" radius="0px" position="relative">
         <CardMedia
           component="img"
           alt={props?.subtitle}
@@ -41,8 +41,7 @@ export const Banner = (props) => {
         {/* <FloatingGradients /> */}
         <RelativeContainer
           color={
-            props.title === "Counselor Experts" ||
-            ("Join us as Volunteer" && "white")
+            props.title === "Counselor Experts" || "Time २ Need" ? "white" : ""
           }
         >
           <FloatingText>

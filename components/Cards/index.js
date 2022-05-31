@@ -20,7 +20,7 @@ export const ButtonCard = ({ cardData }) => {
       </Typography>
       <Conatiner>
         {cardData?.article_and_videos?.map((item, index) => (
-          <Card height={"410px"} key={index} width={"360px"}>
+          <Card key={index} width={"30%"}>
             <CardMedia
               component="img"
               alt={item.alt}

@@ -2,5 +2,5 @@ import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 100%;
-  height: 125px;
+  height: 30px;
 `;

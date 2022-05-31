@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  target: 'serverless',
   reactStrictMode: true,
   env: {
     API_KEY: "blt8acc25df64f80269",
@@ -10,9 +9,6 @@ const nextConfig = {
   },
   compiler: {
     styledComponents: true,
-  },
-  flags: {
-    DEV_SSR: false,
   },
 };
 

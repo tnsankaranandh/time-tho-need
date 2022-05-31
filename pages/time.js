@@ -4,17 +4,16 @@ import { TimeDoNeed } from "../templates/TimeNeed";
 
 const Home = (props) => {
   const [data, setData] = useState(props.response);
-  return <TimeDoNeed />;
+  return <TimeDoNeed data={data} />;
 };
 
 export const getStaticProps = async () => {
-  //const response = await getContentByURL("home_page", "home", "en-us", []);
-  const header = await getEntries("header", "en-us", []);
-  const footer = await getEntries("footer", "en-us", []);
-  //const response = await getEntries("home_page", "en-us", []);
+  const response = await getEntries("time_2_need", "en-us", [
+    "need_help.counselor",
+  ]);
   return {
     props: {
-      response: { header: header, footer: footer },
+      response: { time: response },
     },
   };
 };

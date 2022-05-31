@@ -18,5 +18,5 @@ export const Tabs = styled(MuiTabs)`
   justify-content: space-evenly;
 `;
 export const Box = styled(MuiBox)`
-  width: 55%;
+  width: 30%;
 `;

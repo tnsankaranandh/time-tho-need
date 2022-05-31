@@ -13,14 +13,12 @@ export const ShortBanner = ({ data }) => {
   };
   return (
     <>
-      <IntialContainer
-        backgroundImage={
-          "https://images.contentstack.io/v3/assets/blt8acc25df64f80269/blta8964f2b3a50ebcf/628e24fd6f81705517a1efe3/istockphoto-1332601848-170667a.jpg"
-        }
-      >
-        <Typography variant="h2">Want To Donate Youre Time</Typography>
+      <IntialContainer backgroundImage={data.background_image[0].url}>
+        <Typography variant="h2">{data.title}</Typography>
         <Button onClick={handleOpen}>
-          <Typography variant="body1">Schedule</Typography>
+          <Typography hover={true} color="white" variant="body1">
+            {data.cta.title}
+          </Typography>
         </Button>
       </IntialContainer>
       <CommonModal open={open} handleClose={handleClose}>

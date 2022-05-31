@@ -26,8 +26,6 @@ export const ArticlePage = ({ data }) => {
     }
   };
 
-  console.log(entriesData);
-
   const getArticalData = useCallback(async () => {
     const reslut = await getArticalAndVidoeData({
       type: typeData,

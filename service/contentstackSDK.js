@@ -109,7 +109,7 @@ const getScheduleBasedOnUser = async (
       (present) => present.date === currentDate
     );
     const userDetails = await getAllEntry(contentTypeUid2, locale);
-    const specificUser = userDetails.filter((user) => user.join_as === join_as);
+    const specificUser = userDetails.filter((user) => join_as.includes(user.join_as));
     const finalResult = await getScheduleForSpecificUser(
       todaySchedule,
       specificUser

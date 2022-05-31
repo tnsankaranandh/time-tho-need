@@ -23,4 +23,5 @@ export const Table = styled(MuiTable)``;
 
 export const DataGrid = styled(MuiDataGrid)`
   font-family: "Sarabun";
+  margin-bottom: 20px;
 `;
