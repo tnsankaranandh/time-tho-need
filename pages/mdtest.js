@@ -41,8 +41,8 @@ const MDTest = (props) => {
     // console.log(res)
     return (
         <div>
-            <h1>{res.header.title}</h1>
-            <h1>{res.footer.title}</h1>
+            <h1>{res?.header?.title}</h1>
+            <h1>{res?.footer?.title}</h1>
             <hr />
             <div>
                 <input
@@ -95,15 +95,15 @@ const MDTest = (props) => {
                     <th>Meeting Id</th>
                     <th>Date</th>
                 </tr>
-                {res.schedule.map((current, key) => {
+                {res?.schedule?.map((current, key) => {
                     return (
                         <tr key={key}>
                             <td>{key + 1}</td>
-                            <td>{current.title}</td>
-                            <td>{current.topics}</td>
-                            <td>{current.display_name}</td>
-                            <td>{current.meeting_id}</td>
-                            <td>{current.date}</td>
+                            <td>{current?.title}</td>
+                            <td>{current?.topics}</td>
+                            <td>{current?.display_name}</td>
+                            <td>{current?.meeting_id}</td>
+                            <td>{current?.date}</td>
                         </tr>
                     )
                 })}
