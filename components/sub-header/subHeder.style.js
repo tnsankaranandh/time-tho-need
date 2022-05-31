@@ -5,7 +5,12 @@ import { Tabs as MuiTabs } from "@mui/material";
 
 export const Tab = styled(MuiTab)`
   &.MuiTab-root {
-    width: 500px;
+    &.Mui-selected {
+      color: #475e5f;
+    }
+    &.MuiButtonBase-root {
+      font-family: "Sarabun";
+    }
   }
 `;
 export const Tabs = styled(MuiTabs)`
@@ -13,6 +18,5 @@ export const Tabs = styled(MuiTabs)`
   justify-content: space-evenly;
 `;
 export const Box = styled(MuiBox)`
-  margin-left: 40px;
-  width: 100%;
+  width: 55%;
 `;

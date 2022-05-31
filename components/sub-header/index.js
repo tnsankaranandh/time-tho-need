@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Box, Tab, Tabs } from "./subHeder.style";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useMemo } from "react";
 
 const LinkTab = (props) => {
   const router = useRouter();
@@ -17,7 +19,20 @@ const LinkTab = (props) => {
 };
 
 export const SubHeader = () => {
+  const router = useRouter();
   const [value, setValue] = useState(0);
+  const path = useMemo(() => {
+    return [
+      { name: "Home", path: "/" },
+      { name: "TIME २ NEED", path: "/time" },
+      { name: "Article & Video", path: "/article" },
+      { name: "Article & Video - Algolia", path: "/article-algolia" },
+    ];
+  }, []);
+
+  useEffect(() => {
+    setValue(path.findIndex((item) => item.path === router.asPath));
+  }, [path, router]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -30,13 +45,14 @@ export const SubHeader = () => {
         onChange={handleChange}
         TabIndicatorProps={{
           sx: {
+            backgroundColor: "#004e64",
             top: 0,
           },
         }}
       >
-        <LinkTab label="Page One" href="/" />
-        <LinkTab label="Page Two" href="/" />
-        <LinkTab label="Page Three" href="/" />
+        {path.map((item, index) => {
+          return <LinkTab label={item.name} href={item.path} key={index} />;
+        })}
       </Tabs>
     </Box>
   );

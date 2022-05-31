@@ -7,43 +7,75 @@ import {
   ListItem,
   ListItemButton,
   FloatingText,
+  FloatingGradients,
+  BodyContainer,
+  RelativeContainer,
 } from "./banner.style";
 import { Card } from "../common/card";
+import { useBehaviorTracking } from "@uniformdev/optimize-tracker-react";
+// import { PersonalizableListItem } from '@uniformdev/optimize-tracker-common'
 
-export const Banner = () => {
+// export const Banner = ({
+//   action = true,
+//   height = "810px",
+//   imageHeight = "710px",
+// })
+export const Banner = (props) => {
+  useBehaviorTracking(props.uniform);
+
+  let action = false;
   return (
     <Container>
-      <Card width={"100%"} height={"810px"}>
+      <Card width={"100%"} height="500px" radius="0px">
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
-          height="710"
+          alt={props?.subtitle}
+          height="500px"
           image={
-            "https://images.contentstack.io/v3/assets/blt768ba725e641b87f/blt990bfd9dbc82cbb3/61baf329cfec3b7f48754fec/help-for-the-next-step.svg"
+            props?.banner_image && props?.banner_image[0]?.url
+              ? props.banner_image[0].url
+              : ""
           }
-          title="Contemplative Reptile"
+          title={props?.title}
         />
-        <FloatingText gutterBottom variant="h4" component="h4">
-          Lorem ipsum dolor sit amet.
-        </FloatingText>
-        <CardActionArea>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton color={"red"}>
-                <Typography gutterBottom variant="h4" component="h4">
-                  Become A Time Doneter
-                </Typography>
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton color="blue">
-                <Typography gutterBottom variant="h4" component="h4">
-                  Need Help
-                </Typography>
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </CardActionArea>
+        {/* <FloatingGradients /> */}
+        <RelativeContainer
+          color={
+            props.title === "Counselor Experts" ||
+            ("Join us as Volunteer" && "white")
+          }
+        >
+          <FloatingText>
+            <Typography gutterBottom variant="h2" component="h2">
+              {props?.title}
+            </Typography>
+          </FloatingText>
+          <BodyContainer>
+            <Typography variant="h6" component="h6" className="subTitle">
+              {props?.subtitle}
+            </Typography>
+          </BodyContainer>
+        </RelativeContainer>
+        {action && (
+          <CardActionArea>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton color={"#0c404e"}>
+                  <Typography gutterBottom variant="h4" component="h4">
+                    Become A Time Doneter
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton color="#ff5844">
+                  <Typography gutterBottom variant="h4" component="h4">
+                    Need Help
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </CardActionArea>
+        )}
       </Card>
     </Container>
   );

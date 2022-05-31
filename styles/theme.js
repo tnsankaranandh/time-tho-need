@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { blue, green, grey, indigo, red } from "@mui/material/colors";
+// import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 const customBlue = {
   50: "#e9f0fb",
@@ -41,6 +42,29 @@ const theme = createTheme({
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "red",
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+      '"Sarabun"',
+      '"Sarabun"',
+    ].join(","),
   },
 });
 
