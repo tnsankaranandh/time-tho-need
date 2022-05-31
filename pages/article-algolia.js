@@ -65,7 +65,7 @@ export default function Page(props) {
   );
 }
 
-export async function getInitialProps({ resolvedUrl }) {
+export async function getStaticProps({ resolvedUrl }) {
   const searchState = pathToSearchState(resolvedUrl);
   const resultsState = await findResultsState(ArticleAlgolia, {
     ...DEFAULT_PROPS,

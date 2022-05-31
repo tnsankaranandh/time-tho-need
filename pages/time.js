@@ -7,7 +7,7 @@ const Home = (props) => {
   return <TimeDoNeed />;
 };
 
-export const getInitialProps = async () => {
+export const getStaticProps = async () => {
   //const response = await getContentByURL("home_page", "home", "en-us", []);
   const header = await getEntries("header", "en-us", []);
   const footer = await getEntries("footer", "en-us", []);
