@@ -19,10 +19,10 @@ const updateAfter = 700;
 const createURL = (state) => `?${qs.stringify(state)}`;
 
 const pathToSearchState = (path) =>
-  path.includes('?') ? qs.parse(path.substring(path.indexOf('?') + 1)) : {};
+  path?.includes('?') ? qs.parse(path?.substring(path?.indexOf('?') + 1)) : {};
 
 const searchStateToURL = (searchState) =>
-  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '';
+  searchState ? `${window.location.pathname}?${qs?.stringify(searchState)}` : '';
 
 const DEFAULT_PROPS = {
   searchClient,
