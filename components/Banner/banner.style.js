@@ -63,7 +63,7 @@ export const BodyContainer = styled.div`
 `;
 
 export const RelativeContainer = styled.div`
-  color: ${({ color }) => console.log(color)};
+  color: ${({ color }) => color};
   position: absolute;
   width: 45%;
   height: 300px;

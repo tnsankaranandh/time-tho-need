@@ -39,13 +39,7 @@ export const Banner = (props) => {
           title={props?.title}
         />
         {/* <FloatingGradients /> */}
-        <RelativeContainer
-          color={
-            props.title.includes(["Counselor Experts", "Time २ Need"])
-              ? "white"
-              : "black"
-          }
-        >
+        <RelativeContainer color={"white"}>
           <FloatingText>
             <Typography gutterBottom variant="h2" component="h2">
               {props?.title}
