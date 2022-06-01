@@ -28,14 +28,14 @@ export const Typography = styled(MuiTypography)`
 
 export const Close = styled(CloseIcon)`
   &.MuiSvgIcon-root {
-    margin-left: 510px;
+    margin-left: 87%;
     padding: 10px;
     color: #0c404e;
   }
 `;
 
 export const Button = styled(MuiButton)`
-  padding: 5px 25px;
+  padding: 3% 6%;
   border: 2px solid ${(props) => props.log && "#0c404e"};
   color: ${(props) => props.log && "#fff"};
   background-color: ${(props) => props.log && "#0c404e"};

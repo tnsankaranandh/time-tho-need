@@ -48,7 +48,7 @@ export const Header = () => {
               <ImageAvatar
                 onClick={avatarClick}
                 alt="some"
-                url="https://images.contentstack.io/v3/assets/blt768ba725e641b87f/blte83ff75d79a4777b/62825030bd980555189d3009/photo-1593085512500-5d55148d6f0d.jpeg"
+                url=""
                 width={40}
                 height={40}
               />
